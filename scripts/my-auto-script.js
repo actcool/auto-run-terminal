@@ -22,9 +22,26 @@ function autoSwitchNodeVersion() {
                 
                 // 4. 检查 nvm 是否已安装（避免 nvm 未配置时报错）
                 try {
-                    // 执行 nvm use，屏蔽无关输出（仅保留关键提示）
-                    execSync(`nvm use ${nodeVersion}`, { stdio: 'pipe' });
+                    // 执行 nvm use，需要加载 shell 配置文件
+                    execSync(`source ~/.nvm/nvm.sh && nvm use ${nodeVersion}`, {
+                        stdio: 'pipe',
+                        shell: '/bin/zsh'
+                    });
                     console.log(`🔧 已切换至 Node.js ${nodeVersion}`);
+                    
+                    // 重新加载 shell 环境并获取新的 Node 版本
+                    const newVersion = execSync(`source ~/.nvm/nvm.sh && node -v`, {
+                        encoding: 'utf8',
+                        shell: '/bin/zsh'
+                    }).trim();
+                    
+                    // 设置环境变量以便当前会话使用
+                    process.env.PATH = execSync(`source ~/.nvm/nvm.sh && echo $PATH`, {
+                        encoding: 'utf8',
+                        shell: '/bin/zsh'
+                    }).trim();
+                    
+                    console.log(`✅ 当前会话 Node 版本已更新为：${newVersion}`);
                 } catch (error) {
                     // 检查是否是 nvm 命令不存在
                     if (error.message.includes('command not found') || error.message.includes('nvm')) {
