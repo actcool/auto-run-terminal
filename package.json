@@ -1,6 +1,6 @@
 {
     "name": "auto-run-terminal",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Mac终端/VS Code终端打开时自动执行指定脚本，安装即生效",
     "main": "bin/auto-config.js",
     "bin": {
