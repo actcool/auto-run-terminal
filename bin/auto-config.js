@@ -60,11 +60,13 @@ ${CONFIG_MARK}
 ${AUTO_RUN_COMMAND}
 
 # cd命令钩子：切换目录时自动执行脚本
+# 使用zsh的chpwd钩子函数，可以捕获所有目录切换事件，包括直接输入路径
 auto_switch_cd_hook() {
-    builtin cd "$@"
     source "${SCRIPT_PATH}"
 }
-alias cd='auto_switch_cd_hook'
+# 将函数添加到chpwd钩子，这样无论是通过cd命令还是直接输入路径都会触发
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd auto_switch_cd_hook
 `;
     fs.appendFileSync(zshrcPath, newContent, 'utf8');
     console.log('✅ 成功将自动执行脚本配置到.zshrc');
