@@ -148,3 +148,32 @@ node bin/auto-config.js
 # 发布到npm
 npm publish
 ```
+
+## 🗑️ 卸载
+
+### 自动卸载
+
+使用npm卸载包时会自动执行卸载脚本，移除添加到`~/.zshrc`中的配置：
+
+```bash
+npm uninstall -g auto-run-terminal
+```
+
+或卸载项目依赖：
+
+```bash
+npm uninstall auto-run-terminal
+```
+
+### 手动卸载
+
+如果需要手动卸载，可以执行：
+
+```bash
+node ./node_modules/auto-run-terminal/bin/uninstall.js
+```
+
+卸载脚本会：
+1. 从`~/.zshrc`中移除auto-run-terminal相关的配置
+2. 清理多余的空行，保持文件整洁
+3. 提示重启终端或执行`source ~/.zshrc`使更改生效

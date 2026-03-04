@@ -7,7 +7,8 @@
       "auto-run-terminal": "./bin/auto-config.js"
     },
     "scripts": {
-      "postinstall": "node ./bin/auto-config.js"
+      "postinstall": "node ./bin/auto-config.js",
+      "preuninstall": "node ./bin/uninstall.js"
     },
     "keywords": ["terminal", "auto-run", "zsh"],
     "author": "",
