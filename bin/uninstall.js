@@ -19,7 +19,7 @@ function readZshrc() {
     return '';
   } catch (err) {
     console.error('❌ 读取.zshrc文件失败：', err.message);
-    process.exit(1);
+    return '';
   }
 }
 
@@ -43,8 +43,8 @@ function removeConfigFromZshrc() {
     // 移除配置内容（从开始标记到结束标记）
     let cleanContent = existingContent.slice(0, startIndex) + existingContent.slice(endIndex);
     
-    // 清理多余的空行
-    cleanContent = cleanContent.replace(/\n\n+/g, '\n\n').trim() + '\n';
+    // 清理多余的空行，保留最多两个连续空行
+    cleanContent = cleanContent.replace(/\n{3,}/g, '\n\n').trim() + '\n';
     
     // 写回清理后的内容
     fs.writeFileSync(zshrcPath, cleanContent, 'utf8');
@@ -52,7 +52,6 @@ function removeConfigFromZshrc() {
     console.log('✅ 成功从.zshrc中移除auto-run-terminal配置');
   } catch (err) {
     console.error('❌ 移除配置失败：', err.message);
-    process.exit(1);
   }
 }
 

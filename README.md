@@ -151,29 +151,31 @@ npm publish
 
 ## 🗑️ 卸载
 
-### 自动卸载
+### 推荐卸载方法
 
-使用npm卸载包时会自动执行卸载脚本，移除添加到`~/.zshrc`中的配置：
+为了确保完全卸载，建议使用以下命令：
 
 ```bash
+# 全局卸载
 npm uninstall -g auto-run-terminal
-```
-
-或卸载项目依赖：
-
-```bash
-npm uninstall auto-run-terminal
 ```
 
 ### 手动卸载
 
-如果需要手动卸载，可以执行：
+如果上述方法不生效，可以手动执行卸载脚本：
 
-```bash
-node ./node_modules/auto-run-terminal/bin/uninstall.js
-```
+### 卸载脚本功能
 
 卸载脚本会：
-1. 从`~/.zshrc`中移除auto-run-terminal相关的配置
+1. 从`~/.zshrc`中移除auto-run-terminal相关的所有配置
 2. 清理多余的空行，保持文件整洁
 3. 提示重启终端或执行`source ~/.zshrc`使更改生效
+
+### 验证卸载
+
+卸载完成后，可以检查`~/.zshrc`文件中是否还存在以下内容：
+- `# AUTO-RUN-TERMINAL-CONFIG (START DO NOT DELETE)`
+- `# AUTO-RUN-TERMINAL-CONFIG (END DO NOT DELETE)`
+- `source`命令指向auto-run-terminal的脚本
+
+如果这些内容已不存在，说明卸载成功。

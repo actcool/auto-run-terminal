@@ -1,10 +1,11 @@
 {
     "name": "auto-run-terminal",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Mac终端/VS Code终端打开时自动执行指定脚本，安装即生效",
     "main": "bin/auto-config.js",
     "bin": {
-      "auto-run-terminal": "./bin/auto-config.js"
+      "auto-run-terminal": "./bin/auto-config.js",
+      "auto-run-terminal-uninstall": "./bin/uninstall.js"
     },
     "scripts": {
       "postinstall": "node ./bin/auto-config.js",
