@@ -19,7 +19,6 @@ auto-switch-node-version() {
             if command -v nvm &> /dev/null; then
                 echo "🔧 执行 nvm use $NODE_VERSION..."
                 nvm use "$NODE_VERSION"
-                echo "✅ 已切换至 Node.js $NODE_VERSION"
             else
                 echo "⚠️ 未检测到 nvm，请先安装配置 nvm 后再使用该功能"
             fi
